@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>STRATEGIC PROFIT MODEL</h1>
+<p>The strategic profit model enables managers to estimate the impact of supply chain improvements such as cycle time reduction on balance sheets and income statement accounts (i.e., sales and inventory accounts). The ultimate financial aim of SCM is to increase return on equity (ROE). The strategic profit model can be used to trace the impact of SCM initiatives on return on assets (ROA), profit margin, ROE, and other financial metrics.</p>
+
+<table>
+    <tr>
+        <th>Input</th>
+        <th>Input Values</th>
+        <th>Formula</th>
+        <th>Output</th>
+        <th>Implications</th>
+    </tr>
+    <tr>
+        <td>Sales</td>
+        <td><input type="number" id="sales" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_sales"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>COGS</td>
+        <td><input type="number" id="cogs" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_cogs"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Gross Margin</td>
+        <td></td>
+        <td>Sales - COGS</td>
+        <td id="output_gross_margin"></td>
+        <td>Gross Margin reflects the amount of profit generated from sales after accounting for the cost of goods sold (COGS). A higher Gross Margin indicates better profitability.</td>
+    </tr>
+    <tr>
+        <td>Logistics Cost</td>
+        <td><input type="number" id="logistics_cost" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_logistics_cost"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Marketing Cost</td>
+        <td><input type="number" id="marketing_cost" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_marketing_cost"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Inventory</td>
+        <td><input type="number" id="inventory" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_inventory"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Cash</td>
+        <td><input type="number" id="cash" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_cash"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Receivables</td>
+        <td><input type="number" id="receivables" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_receivables"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Current Assets</td>
+        <td></td>
+        <td>Inventory + Cash + Receivables</td>
+        <td id="output_current_assets"></td>
+        <td>Current Assets represent the total value of assets that can be converted into cash within a short time frame. It reflects the company's liquidity.</td>
+    </tr>
+    <tr>
+        <td>Total Cost</td>
+        <td></td>
+        <td>COGS + Logistics Cost</td>
+        <td id="output_total_cost"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Profit</td>
+        <td></td>
+        <td>Sales - Total Cost</td>
+        <td id="output_profit"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Profit Margin</td>
+        <td></td>
+        <td>Profit / Sales</td>
+        <td id="output_profit_margin"></td>
+        <td>Profit Margin reflects the percentage of profit from sales. A higher Profit Margin is typically favorable.</td>
+    </tr>
+    <tr>
+        <td>Asset Turnover</td>
+        <td></td>
+        <td>Sales / Current Assets</td>
+        <td id="output_asset_turnover"></td>
+        <td>Asset Turnover measures sales generated per unit of assets. Higher values are generally better.</td>
+    </tr>
+    <tr>
+        <td>Total Debt</td>
+        <td><input type="number" id="total_debt" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_total_debt"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Shareholder's Equity</td>
+        <td><input type="number" id="shareholder_equity" oninput="calculate()"></td>
+        <td></td>
+        <td id="output_shareholder_equity"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>ROA (Return on Assets)</td>
+        <td></td>
+        <td>Gross Margin / Current Assets</td>
+        <td id="output_roa"></td>
+        <td>ROA measures how efficiently assets are used. Higher values are generally better.</td>
+    </tr>
+    <tr>
+        <td>ROE (Return on Equity)</td>
+        <td></td>
+        <td>Profit / Current Assets</td>
+        <td id="output_roe"></td>
+        <td>ROE indicates profitability from shareholders' perspective. Higher values are typically favorable.</td>
+    </tr>
+    <tr>
+        <td>Financial Leverage</td>
+        <td></td>
+        <td>Total Debt / Shareholder's Equity</td>
+        <td id="output_financial_leverage"></td>
+        <td>Financial Leverage measures the use of debt in the capital structure. Higher values indicate a greater reliance on debt financing, which can magnify both returns and risks.</td>
+    </tr>
+    <tr>
+        <td>Financial Leverage Ratio 1</td>
+        <td></td>
+        <td>Total Debt / Shareholder's Equity</td>
+        <td id="output_financial_leverage_ratio_1"></td>
+        <td>Financial Leverage Ratio 1 is Debt-to-Equity (Total Debt / Total Equity). It indicates the proportion of equity relative to debt in the company's capital structure.</td>
+    </tr>
+    <tr>
+        <td>Financial Leverage Ratio 2</td>
+        <td></td>
+        <td>Total Debt / Total Assets</td>
+        <td id="output_financial_leverage_ratio_2"></td>
+        <td>Financial Leverage Ratio 2 is Debt-to-Assets (Total Debt / Total Assets). It indicates the proportion of assets financed by debt.</td>
+    </tr>
+    <!-- Add more input rows as needed -->
+</table>
+
+<script>
+    function calculate() {
+        // Get input values
+        const sales = parseFloat(document.getElementById('sales').value);
+        const cogs = parseFloat(document.getElementById('cogs').value);
+        const logisticsCost = parseFloat(document.getElementById('logistics_cost').value);
+        const marketingCost = parseFloat(document.getElementById('marketing_cost').value);
+        const inventory = parseFloat(document.getElementById('inventory').value);
+        const cash = parseFloat(document.getElementById('cash').value);
+        const receivables = parseFloat(document.getElementById('receivables').value);
+        const totalDebt = parseFloat(document.getElementById('total_debt').value);
+        const shareholderEquity = parseFloat(document.getElementById('shareholder_equity').value);
+        
+        // Calculate Gross Margin
+        const grossMargin = sales - cogs;
+
+        // Calculate Current Assets
+        const currentAssets = inventory + cash + receivables;
+
+        // Calculate Total Cost
+        const totalCost = cogs + logisticsCost;
+
+        // Calculate Profit
+        const profit = sales - totalCost;
+
+        // Calculate Profit Margin
+        const profitMargin = (profit / sales) * 100; // Display as percentage
+
+        // Calculate Asset Turnover
+        const assetTurnover = sales / currentAssets;
+
+        // Calculate Financial Leverage
+        const financialLeverage = totalDebt / shareholderEquity;
+
+        // Calculate Financial Leverage Ratio 1 (Debt-to-Equity)
+        const financialLeverageRatio1 = totalDebt / shareholderEquity;
+
+        // Calculate Financial Leverage Ratio 2 (Debt-to-Assets)
+        const totalAssets = currentAssets + inventory; // Assuming inventory is part of total assets
+        const financialLeverageRatio2 = totalDebt / totalAssets;
+
+        // Calculate ROA (Return on Assets)
+        const roa = (grossMargin / currentAssets) * 100; // Display as percentage
+
+        // Calculate ROE (Return on Equity)
+        const roe = (profit / currentAssets) * 100; // Display as percentage
+
+        // Update output cells
+        document.getElementById('output_gross_margin').textContent = grossMargin.toFixed(2);
+        document.getElementById('output_current_assets').textContent = currentAssets.toFixed(2);
+        document.getElementById('output_total_cost').textContent = totalCost.toFixed(2);
+        document.getElementById('output_profit').textContent = profit.toFixed(2);
+        document.getElementById('output_profit_margin').textContent = profitMargin.toFixed(2) + '%';
+        document.getElementById('output_asset_turnover').textContent = assetTurnover.toFixed(2);
+        document.getElementById('output_total_debt').textContent = totalDebt.toFixed(2);
+        document.getElementById('output_shareholder_equity').textContent = shareholderEquity.toFixed(2);
+        document.getElementById('output_financial_leverage').textContent = financialLeverage.toFixed(2);
+        document.getElementById('output_financial_leverage_ratio_1').textContent = financialLeverageRatio1.toFixed(2);
+        document.getElementById('output_financial_leverage_ratio_2').textContent = financialLeverageRatio2.toFixed(2);
+        document.getElementById('output_roa').textContent = roa.toFixed(2) + '%';
+        document.getElementById('output_roe').textContent = roe.toFixed(2) + '%';
+
+        // Add more calculations and updates as needed
+    }
+
+    // Initial calculation when the page loads
+    calculate();
+</script>
+
+</body>
+
+</html>
